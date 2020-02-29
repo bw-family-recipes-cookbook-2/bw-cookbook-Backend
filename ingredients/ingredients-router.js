@@ -20,8 +20,8 @@ router.post('/recipe/:id', (req, res) => {
     //adds a new ingredient to a recipe by recipe id
 })
 
-router.put('/recipe/:id', (req, res) => {
-    //edits list of ingredients for a recipe by recipe id
+router.put(':id/recipe/:id', (req, res) => {
+    //edits an igredient by id for a recipe by id
 });
 
 router.delete(':id/recipe/:id', (req, res) => {
