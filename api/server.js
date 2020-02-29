@@ -4,6 +4,8 @@ const cors = require("cors");
 
 const authRouter = require("../auth/auth-router");
 const usersRouter = require("../users/users-router");
+const ingredientsRouter = require("../ingredients/ingredients-router");
+const recipeRouter = require("../recipes/recipe-router");
 const restricted = require("../auth/restricted-middleware");
 
 const server = express();
@@ -14,6 +16,8 @@ server.use(cors());
 
 server.use("/api/auth", authRouter);
 server.use("/api/users", usersRouter);
+server.use("/api/recipes", restricted, recipeRouter);
+server.use("/api/ingredients", restricted, ingredientsRouter);
 
 server.get("/", (req, res) => {
   res.send("It's alive!");
