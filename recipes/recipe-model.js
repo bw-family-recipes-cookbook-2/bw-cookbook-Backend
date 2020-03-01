@@ -3,32 +3,37 @@ const db = require("../data/dbConfig");
 module.exports = {
     add,
     find,
-    findBy,
     findById,
-    edit,
+    update,
     remove
 };
 
-function add() {
-
-}
+function add(recipe) {
+    return db("recipes")
+        .insert(recipe)
+        .then(ids => {
+            return findById(ids[0])
+        })
+};
 
 function find() {
+    return db("recipes")
+};
 
-}
+function findById(id) {
+    return db("recipes")
+        .where({ id })
+        .first()
+};
 
-function findBy() {
+function update(changes, id) {
+    return db("recipes")
+        .where({ id })
+        .update(changes)
+};
 
-}
-
-function findById() {
-
-}
-
-function edit() {
-
-}
-
-function remove() {
-
-}
+function remove(id) {
+    return db("recipes")
+        .where({ id })
+        .del()
+};

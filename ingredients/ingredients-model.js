@@ -1,32 +1,39 @@
+const db = require("../data/dbConfig");
+
 module.exports = {
     add,
     find,
-    findBy,
     findById,
-    edit,
+    update,
     remove
 };
 
-function add() {
-
-}
+function add(ingredient) {
+    return db("ingredients")
+        .insert(ingredient)
+        .then(ids => {
+            return findById(ids[0])
+        })
+};
 
 function find() {
+    return db("ingredients")
+};
 
-}
+function findById(id) {
+    return db("ingredients")
+        .where({ id })
+        .first()
+};
 
-function findBy() {
+function update(changes, id) {
+    return db("ingredients")
+        .where({ id })
+        .update(changes)
+};
 
-}
-
-function findById() {
-
-}
-
-function edit() {
-
-}
-
-function remove() {
-
-}
+function remove(id) {
+    return db("ingredients")
+        .where({ id })
+        .del()
+};
