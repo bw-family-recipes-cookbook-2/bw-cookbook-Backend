@@ -4,7 +4,6 @@ module.exports = {
     add,
     find,
     findById,
-    addIngredient,
     update,
     remove
 };
@@ -17,14 +16,7 @@ function add(ingredient) {
         })
 };
 
-function addIngredient(ingredient, id) {
-    const addedIng = {...ingredient, recipe_id: id}
-    return db("recipes")
-        .insert(addedIng)
-        .then(() => {
-            return findIngredients(id)
-        })
-};
+
 
 function find() {
     return db("ingredients")
