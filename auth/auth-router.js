@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const Users = require("../users/users-model");
 const { jwtSecret } = require("../config/secrets");
 
-// for endpoints beffining with /api/auth
+// for endpoints beggining with /api/auth
 router.post("/register", (req, res) => {
   let user = req.body;
   const hash = bcrypt.hashSync(user.password, 10);
