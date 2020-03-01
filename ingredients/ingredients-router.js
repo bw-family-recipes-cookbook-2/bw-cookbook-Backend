@@ -121,3 +121,5 @@ router.delete('/recipe/:id', (req, res) => {
             res.status(500).json({ error: "cannot remove ingredient at this time" })
         })
 });
+
+module.exports = router;

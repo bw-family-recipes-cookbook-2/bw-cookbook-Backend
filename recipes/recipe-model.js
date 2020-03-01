@@ -5,7 +5,6 @@ module.exports = {
     find,
     findById,
     addIngredient,
-    addRecipe,
     findIngredients,
     findRecipeByUserId,
     update,
