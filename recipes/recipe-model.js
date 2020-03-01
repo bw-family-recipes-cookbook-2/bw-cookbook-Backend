@@ -38,9 +38,12 @@ function addIngredient(ingredient, id) {
 };
 
 function findIngredients(id) {
-    return db("ingredients as i")
+    return db("ingredients_by_recipe as i")
         .join("recipes as r", "r.id", "i.recipe_id")
-        .select("r.ingredients")
+        .select(
+            "r.ingredients",
+            "i.quantity"
+            )
         .where({ id })
 };
 
