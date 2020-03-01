@@ -15,6 +15,20 @@ router.get('/:id', (req, res) => {
     //returns recipe by recipe id
 });
 
+router.get(':id/ingredients', (req, res) => {
+    //returns a list of ingredients for a given recipe by id
+    Recipes.findIngredients(req.params)
+        .then(ingredients => {
+            ingredients
+            ? res.status(200).json(ingredients)
+            : res.status(404).json({ error: "no ingredients found for that recipe" })
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({ error: "cannot get ingredients for that recipe at this time" })
+        })
+});
+
 router.post('/user/:id', (req, res) => {
     //adds a new recipe to the users recipe list by id
 });

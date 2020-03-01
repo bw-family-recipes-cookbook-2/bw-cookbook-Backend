@@ -4,6 +4,8 @@ module.exports = {
     add,
     find,
     findById,
+    addIngredient,
+    findIngredients,
     update,
     remove
 };
@@ -24,6 +26,22 @@ function findById(id) {
     return db("recipes")
         .where({ id })
         .first()
+};
+
+function addIngredient(ingredient, id) {
+    const addedIng = {...ingredient, recipe_id: id}
+    return db("recipes")
+        .insert(addedIng)
+        .then(() => {
+            return findIngredients(id)
+        })
+};
+
+function findIngredients(id) {
+    return db("ingredients as i")
+        .join("recipes as r", "r.id", "i.recipe_id")
+        .select("r.ingredients")
+        .where({ id })
 };
 
 function update(changes, id) {

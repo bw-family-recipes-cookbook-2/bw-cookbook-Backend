@@ -1,7 +1,6 @@
 const router = require("express").Router();
 
 const Ingredients = require("../ingredients/ingredients-model");
-const Recipe = require("../recipes/recipe-model");
 
 // for endpoints beginning with /api/ingredients
 
@@ -23,7 +22,7 @@ router.get('/:id', (req, res) => {
         .then(ingredients => {
             ingredients
             ? res.status(200).json(ingredients)
-            : res.status(404).json({ error: "no ingredients associated with that recipe" })
+            : res.status(404).json({ error: "no ingredients associated with that id" })
         })
         .catch(err => {
             console.log(err)
@@ -31,16 +30,14 @@ router.get('/:id', (req, res) => {
         })
 });
 
-router.get('/recipe/:id', (req, res) => {
-    //returns a list of ingredients for a given recipe by id
-});
+
 
 router.post('/recipe/:id', (req, res) => {
     //adds a new ingredient to a recipe by recipe id
 })
 
 router.put(':id/recipe/:id', (req, res) => {
-    //edits an igredient by id for a recipe by id
+    //edits an ingredient by id for a recipe by id
 });
 
 router.delete(':id/recipe/:id', (req, res) => {
