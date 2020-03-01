@@ -43,11 +43,81 @@ router.post('/', (req, res) => {
 })
 
 
-router.put('/:id/recipe/:id', (req, res) => {
-    //edits an ingredient by id for a recipe by id
-    
+router.put('/:id', (req, res) => {
+    //edits an ingredient by ingredient id 
+    const { id } = req.params.id;
+    const changes = req.body;
+
+    Ingredients.findById(id)
+        .then(ingredient => {
+            ingredient
+            ? Ingredients.update(changes, id)
+                .then(updated => {
+                    res.status(200).json(updated)
+                })
+            : res.status(404).json({ error: "no ingredient with that id found" })
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({ error: "cannot update ingredient at this time" })
+        })
 });
 
-router.delete('/:id/recipe/:id', (req, res) => {
+router.put('/recipe/:id', (req, res) => {
+    //edits an ingredient by id for a recipe
+    const { id } = req.params.id;
+    const changes = req.body;
+
+    Ingredients.findById(id)
+        .then(ingredient => {
+            ingredient
+            ? Ingredients.updateIngredientForRecipe(changes, id)
+                .then(changes => {
+                    res.status(200).json(changes)
+                })
+            : res.status(404).json({ error: "ingredient not found" })
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({ error: "cannot update ingredient at this time" })
+        })
+});
+
+router.delete('/:id', (req, res) => {
+    //removes ingredient by id
+    const { id } = req.params.id;
+
+    Ingredients.findById(id)
+        .then(ingredient => {
+            ingredient
+            ? Ingredients.remove(id)
+                .then(removed => {
+                    res.status(200).json(removed)
+                })
+            : res.status(404).json({ error: "no ingredient with that id" })
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({ error: "cannot remove ingredient at this time" })
+        })
+});
+
+router.delete('/recipe/:id', (req, res) => {
     //removes ingredient by id from recipe by id
+
+    const { id } = req.params.id;
+
+    Ingredients.findById(id)
+        .then(ingredient => {
+            ingredient
+            ? Ingredients.removeIngredientFromRecipe(id)
+                .then(removed => {
+                    res.status(200).json(removed)
+                })
+            : res.status(404).json({ error: "no ingredient with that id" })
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({ error: "cannot remove ingredient at this time" })
+        })
 });

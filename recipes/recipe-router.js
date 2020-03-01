@@ -3,6 +3,7 @@ const router = require("express").Router();
 const Recipes = require("../recipes/recipe-model");
 
 // for endpoints beginning with /api/recipes
+
 router.get('/', (req, res) => {
     //returns all recipes
     Recipes.find()
@@ -46,7 +47,7 @@ router.get('/:id', (req, res) => {
         })
 });
 
-router.get(':id/ingredients', (req, res) => {
+router.get('/:id/ingredients', (req, res) => {
     //returns a list of ingredients for a given recipe by id
     const { id } = req.params.id
 

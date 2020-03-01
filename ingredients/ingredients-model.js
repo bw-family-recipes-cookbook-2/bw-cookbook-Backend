@@ -4,7 +4,9 @@ module.exports = {
     add,
     find,
     findById,
+    updateIngredientForRecipe,
     update,
+    removeIngredientFromRecipe,
     remove
 };
 
@@ -28,11 +30,37 @@ function findById(id) {
         .first()
 };
 
+function updateIngredientForRecipe(changes, id) {
+    return db("recipe_ingredients as i")
+        .join(
+            "ingredients as ing", 
+            "i.recipe_id", 
+            "ing.recipe_id",
+            "i.ingredient_id",
+            "ing.id"
+            )
+        .where(id)
+        .update(changes)
+};
+
 function update(changes, id) {
     return db("ingredients")
         .where({ id })
         .update(changes)
 };
+
+function removeIngredientFromRecipe() {
+    return db("recipe_ingredients as i")
+    .join(
+        "ingredients as ing", 
+        "i.recipe_id", 
+        "ing.recipe_id",
+        "i.ingredient_id",
+        "ing.id"
+        )
+    .where(id)
+    .del()
+}
 
 function remove(id) {
     return db("ingredients")

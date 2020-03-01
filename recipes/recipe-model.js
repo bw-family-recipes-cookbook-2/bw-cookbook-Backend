@@ -46,7 +46,7 @@ function findRecipeByUserId(id) {
 
 
 function findIngredients(id) {
-    return db("ingredients_by_recipe as i")
+    return db("recipe_ingredients as i")
         .join("recipes as r", "r.id", "i.recipe_id")
         .select(
             "r.ingredients",
@@ -57,7 +57,7 @@ function findIngredients(id) {
 
 function addIngredient(ingredient, id) {
     const addedIng = {...ingredient, recipe_id: id}
-    return db("recipes")
+    return db("ingredients_by_recipe")
         .insert(addedIng)
         .then(() => {
             return findIngredients(id)
