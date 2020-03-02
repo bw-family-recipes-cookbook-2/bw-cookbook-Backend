@@ -48,16 +48,17 @@ function findIngredients(id) {
     return db("recipe_ingredients as i")
         .join("recipes as r", "r.id", "i.recipe_id")
         .select(
-            "r.ingredients",
+            "r.name",
+            "i.recipe_id",
             "i.quantity"
             )
-        .where({ id })
+        .where( id )
 };
 
 function addIngredient(ingredient, id) {
-    const addedIng = {...ingredient, recipe_id: id}
-    return db("ingredients_by_recipe")
-        .insert(addedIng)
+    return db("recipe_ingredients")
+        .insert(ingredient)
+        .where("recipe_ingredients.recipe_id", {id})
         .then(() => {
             return findIngredients(id)
         })
