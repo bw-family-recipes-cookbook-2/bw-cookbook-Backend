@@ -29,7 +29,7 @@ router.put("/:id", (req, res) => {
   Users.update(req.params.id, changes)
     .then(user => {
       if (user) {
-        res.status(200).json(user);
+        res.status(200).json(changes);
       } else {
         res.status(404).json({ message: "User could not be found" });
       }
