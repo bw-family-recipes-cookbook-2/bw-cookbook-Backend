@@ -91,10 +91,9 @@ router.post('/:id/ingredients', (req, res) => {
                 })
             : req.status(404).json({ error: "no recipe with that id" })
         })
-        .catch(err => {
-            console.log(err)
-            res.status(500).json({ error: "cannot add at this time" })
-        })
+        .catch(({name, code, message, stack}) => {
+            res.status(500).json({name, code, message, stack});
+          });
 });
 
 router.put('/:id', (req, res) => {
