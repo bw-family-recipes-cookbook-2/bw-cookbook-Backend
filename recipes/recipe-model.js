@@ -16,7 +16,7 @@ function add(recipe, id) {
     return db("recipes")
         .insert(addedRecipe)
         .then(() => {
-            return findById(id)
+            return addedRecipe
         })
 };
 
@@ -32,15 +32,15 @@ function findById(id) {
 
 function findRecipeByUserId(id) {
     return db("recipes as r")
-        .join("users as u", "r.user_id", "u.id")
         .select(
+            "r.id",
             "r.name",
             "r.source",
             "r.category",
-            "r.ingredients",
             "r.instructions"
         )
-        .where({ id })
+        .where("r.user_id",  id )
+        .orderBy("r.id")
 };
 
 

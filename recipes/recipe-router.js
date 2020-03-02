@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 
 router.get('/user/:id', (req, res) => {
     //returns all recipes for the user by their id
-    const { id } = req.params.id;
+    const { id } = req.params;
 
     Recipes.findRecipeByUserId(id)
         .then(recipe => {
@@ -33,7 +33,7 @@ router.get('/user/:id', (req, res) => {
 
 router.get('/:id', (req, res) => {
     //returns recipe by recipe id
-    const { id } = req.params.id;
+    const { id } = req.params;
 
     Recipes.findById(id)
         .then(recipe => {
@@ -49,7 +49,7 @@ router.get('/:id', (req, res) => {
 
 router.get('/:id/ingredients', (req, res) => {
     //returns a list of ingredients for a given recipe by id
-    const { id } = req.params.id
+    const { id } = req.params;
 
     Recipes.findIngredients(id)
         .then(ingredients => {
@@ -66,7 +66,7 @@ router.get('/:id/ingredients', (req, res) => {
 router.post('/user/:id', (req, res) => {
     //adds a new recipe to the users recipe list by user id
     const newRecipe = req.body;
-    const id = req.params.id;
+    const { id } = req.params;
 
     Recipes.add(newRecipe, id)
         .then(recipe => {
@@ -80,7 +80,7 @@ router.post('/user/:id', (req, res) => {
 router.post('/:id/ingredients', (req, res) => {
     //adds a new ingredient to a recipe by recipe id
     const newIngredient = req.body;
-    const { id } = req.params.id;
+    const { id } = req.params;
 
     Recipes.findById(id)
         .then(recipe => {
@@ -99,7 +99,7 @@ router.post('/:id/ingredients', (req, res) => {
 
 router.put('/:id', (req, res) => {
     //edits a recipe by recipe id
-    const { id } = req.params.id;
+    const { id } = req.params;
     const changes = req.body;
 
     Recipes.findById(id)
@@ -119,7 +119,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     //deletes a recipe by id
-    const { id } = req.params.id
+    const { id } = req.params;
     Recipes.remove(id)
         .then(deleted => {
             deleted
