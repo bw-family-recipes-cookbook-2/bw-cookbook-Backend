@@ -102,24 +102,4 @@ router.delete('/:id', (req, res) => {
         })
 });
 
-router.delete('/recipe/:id', (req, res) => {
-    //removes ingredient by id from recipe by id
-
-    const { id } = req.params.id;
-
-    Ingredients.findById(id)
-        .then(ingredient => {
-            ingredient
-            ? Ingredients.removeIngredientFromRecipe(id)
-                .then(removed => {
-                    res.status(200).json(removed)
-                })
-            : res.status(404).json({ error: "no ingredient with that id" })
-        })
-        .catch(err => {
-            console.log(err)
-            res.status(500).json({ error: "cannot remove ingredient at this time" })
-        })
-});
-
 module.exports = router;
