@@ -56,9 +56,8 @@ function findIngredients(id) {
 };
 
 function addIngredient(ingredient, id) {
-    return db("recipe_ingredients")
-        .insert(ingredient, id)
-        .where("recipe_id", id)
+    return db("recipe_ingredients as r")
+        .insert(ingredient, "r.recipe_id", id)
         .then(() => {
             return findIngredients(id)
         })
