@@ -4,8 +4,6 @@ module.exports = {
     add,
     find,
     findById,
-    addIngredient,
-    findIngredients,
     findRecipeByUserId,
     update,
     remove
@@ -37,30 +35,11 @@ function findRecipeByUserId(id) {
             "r.name",
             "r.source",
             "r.category",
+            "r.ingredients",
             "r.instructions"
         )
         .where("r.user_id",  id )
         .orderBy("r.id")
-};
-
-
-function findIngredients(id) {
-    return db("recipe_ingredients as i")
-        .join("recipes as r", "r.id", "i.recipe_id")
-        .select(
-            "r.name",
-            "i.recipe_id",
-            "i.quantity"
-            )
-        .where( id )
-};
-
-function addIngredient(ingredient, id) {
-    return db("recipe_ingredients as r")
-        .insert(ingredient, "r.recipe_id", id)
-        .then(() => {
-            return findIngredients(id)
-        })
 };
 
 function update(changes, id) {

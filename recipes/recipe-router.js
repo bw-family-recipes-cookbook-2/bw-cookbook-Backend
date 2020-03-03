@@ -47,21 +47,6 @@ router.get('/:id', (req, res) => {
         })
 });
 
-router.get('/:id/ingredients', (req, res) => {
-    //returns a list of ingredients for a given recipe by id
-    const { id } = req.params;
-
-    Recipes.findIngredients(id)
-        .then(ingredients => {
-            ingredients
-            ? res.status(200).json(ingredients)
-            : res.status(404).json({ error: "no ingredients found for that recipe" })
-        })
-        .catch(err => {
-            console.log(err)
-            res.status(500).json({ error: "cannot get ingredients for that recipe at this time" })
-        })
-});
 
 router.post('/user/:id', (req, res) => {
     //adds a new recipe to the users recipe list by user id
@@ -77,24 +62,6 @@ router.post('/user/:id', (req, res) => {
         })
 });
 
-router.post('/:id/ingredients', (req, res) => {
-    //adds a new ingredient to a recipe by recipe id
-    const newIngredient = req.body;
-    const { id } = req.params;
-
-    Recipes.findById(id)
-        .then(recipe => {
-            recipe
-            ? Recipes.addIngredient(newIngredient, id)
-                .then(ingredient => {
-                    res.status(201).json(ingredient)
-                })
-            : req.status(404).json({ error: "no recipe with that id" })
-        })
-        .catch(({name, code, message, stack}) => {
-            res.status(500).json({name, code, message, stack});
-          });
-});
 
 router.put('/:id', (req, res) => {
     //edits a recipe by recipe id
