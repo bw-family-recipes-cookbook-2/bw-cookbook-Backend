@@ -10,8 +10,8 @@ exports.up = function(knex) {
         tbl.string('name', 255).notNullable();
         tbl.string('source', 255).notNullable();
         tbl.string('category', 255).notNullable();
-        tbl.enu('instructions', [{'step_number': 'description'}]);
-        tbl.enu('ingredients', [{'ingredient_name': 'quantity'}])
+        tbl.json('instructions', [{'step_number': 'description'}]);
+        tbl.json('ingredients', [{'ingredient_name': 'quantity'}])
         tbl.integer("user_id")
         .notNullable()
         .unsigned()
