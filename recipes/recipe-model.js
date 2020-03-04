@@ -37,7 +37,8 @@ function findRecipeByUserId(id) {
             "r.name",
             "r.source",
             "r.category",
-            "r.instructions"
+            "r.instructions",
+            "r.ingredients"
         )
         .where("r.user_id",  id )
         .orderBy("r.id")
