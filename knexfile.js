@@ -5,7 +5,7 @@ module.exports = {
     client: "sqlite3",
     useNullAsDefault: true,
     connection: {
-      filename: "./data/recipes.db3"
+      filename: "./data/recipe.db3"
     },
     pool: {
       afterCreate: (conn, done) => {
@@ -45,6 +45,7 @@ module.exports = {
       min: 2,
       max: 10
     },
+    useNullAsDefault: true,
     migrations: {
       tableName: "knex_migrations"
     }
