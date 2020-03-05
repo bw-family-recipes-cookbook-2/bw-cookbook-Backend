@@ -1,4 +1,4 @@
-describe("Auth router", function() {
+describe("Auth router runs tests", function() {
     it("should run the tests", function() {
       expect(true).toBe(true);
     });

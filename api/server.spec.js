@@ -1,3 +1,9 @@
+describe("Server runs tests", function() {
+    it("should run the tests", function() {
+        expect(true).toBe(true);
+      });
+  });
+
 describe("server.js", () => {
     describe("index route", () => {
       it("should return an OK status code from the index route", async () => {
