@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const Recipes = require("../recipes/recipe-model");
+const Recipes = require("../recipes/recipe-model.js");
 
 // for endpoints beginning with /api/recipes
 

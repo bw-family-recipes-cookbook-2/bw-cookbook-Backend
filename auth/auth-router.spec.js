@@ -1,3 +1,6 @@
+const request = require('supertest');
+const auth = require('../api/server.js');
+
 describe("Auth router runs tests", function() {
     it("should run the tests", function() {
       expect(true).toBe(true);
@@ -5,7 +8,7 @@ describe("Auth router runs tests", function() {
   });
   describe("POST /api/auth/users", function() {
     it("should return 201 OK", function() {
-      return request(server)
+      return request(auth)
         .post("/api/auth/register")
         .then(res => {
           expect(res.status).toBe(500);

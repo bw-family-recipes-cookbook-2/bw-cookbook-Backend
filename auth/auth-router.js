@@ -2,8 +2,8 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const Users = require("../users/users-model");
-const { jwtSecret } = require("../config/secrets");
+const Users = require("../users/users-model.js");
+const { jwtSecret } = require("../config/secrets.js");
 
 // for endpoints beggining with /api/auth
 router.post("/register", (req, res) => {

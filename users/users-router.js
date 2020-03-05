@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
-const Users = require("./users-model");
-const restricted = require("../auth/restricted-middleware");
+const Users = require("./users-model.js");
+const restricted = require("../auth/restricted-middleware.js");
 
 // for endpoints beginning with api/users
 router.get("/", (req, res) => {
