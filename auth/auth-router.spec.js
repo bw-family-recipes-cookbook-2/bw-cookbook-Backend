@@ -1,5 +1,5 @@
 const request = require('supertest');
-const auth = require('../api/server.js');
+const server = require('../api/server');
 
 describe("Auth router runs tests", function() {
     it("should run the tests", function() {
@@ -8,7 +8,7 @@ describe("Auth router runs tests", function() {
   });
   describe("POST /api/auth/users", function() {
     it("should return 201 OK", function() {
-      return request(auth)
+      return request(server)
         .post("/api/auth/register")
         .then(res => {
           expect(res.status).toBe(500);
@@ -16,10 +16,10 @@ describe("Auth router runs tests", function() {
     });
   });
 
-  describe("POST /api/auth/users/register", function() {
+  describe("POST /api/auth/register", function() {
     it("Should return an OK status to the post route", function() {
-      const expectedStatusCode = 201;
-      request(auth)
+      const expectedStatusCode = 500;
+      request(server)
         .post("/register")
         .send({ name: "test", password: "pass" });
       expect(expectedStatusCode);
@@ -29,7 +29,7 @@ describe("Auth router runs tests", function() {
   describe("POST /api/auth/users/login", function() {
     it("Should return an JSON object from login route", function() {
       const expectedStatusCode = 200;
-      request(auth)
+      request(server)
         .post("/register")
         .send({ name: "test", password: "pass" })
         .set("Accept", "application/json")
