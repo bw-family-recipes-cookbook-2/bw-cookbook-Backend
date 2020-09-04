@@ -1,7 +1,10 @@
-# Recipe cookbook Vackend Build Week
+# Recipe cookbook Backend API Build Week
+## NodeJS, Express, Sqlite3
+## Deployed with Heroku
+### https://bw-cookbook.herokuapp.com/api/auth/login
 
 
-Endpoints and documentation:
+## Endpoints and documentation:
 https://documenter.getpostman.com/view/10351835/SzKZtcL5?version=latest
 
 > POST /api/auth/login
